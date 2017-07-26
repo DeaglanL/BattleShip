@@ -10,6 +10,7 @@ public class Board {
 	 * d = ded boat
 	 * 
 	 */
+	Character sea = new Character('s');
 	
 	HashMap<String, Character> boardState = new HashMap<String, Character>();
 	
@@ -17,9 +18,9 @@ public class Board {
 	{
 		for (int i = 0; i < x; i++)
 		{
-			for (int j = 0; i < y; j++)
+			for (int j = 0; j < y; j++)
 			{
-				boardState.put(convertToKey(i , j), 's');
+				boardState.put(convertToKey(i , j), sea);
 			}
 		}
 	}
@@ -40,6 +41,8 @@ public class Board {
 					if(getSpaceStatus(x, y+i) != 's')
 					{
 						occupied = true;
+						System.out.println("cannot place boat here");
+						break; 
 					}
 				}
 				
@@ -57,10 +60,82 @@ public class Board {
 			
 			break;
 		case 'e':
+			//check if space at end of placement exists
+			if(checkSpaceExists(x+s.length, y))
+			{
+				//check spaces are unoccupied
+				for(int i = 0; i < s.length; i++)
+				{
+					if(getSpaceStatus(x+i, y) != 's')
+					{
+						occupied = true;
+						System.out.println("cannot place boat here");
+						break; 
+					}
+				}
+				
+				if(!occupied)
+				{
+					//place ship
+					for(int i = 0; i < s.length; i++)
+					{
+						setSpaceStatus(x+i, y, 'b');
+					}
+				}
+				
+			}
 			break;
 		case 's':
+			//check if space at end of placement exists
+			if(checkSpaceExists(x, y-s.length))
+			{
+				//check spaces are unoccupied
+				for(int i = 0; i < s.length; i++)
+				{
+					if(getSpaceStatus(x, y-i) != 's')
+					{
+						occupied = true;
+						System.out.println("cannot place boat here");
+						break; 
+					}
+				}
+				
+				if(!occupied)
+				{
+					//place ship
+					for(int i = 0; i < s.length; i++)
+					{
+						setSpaceStatus(x, y-i, 'b');
+					}
+				}
+				
+			}
 			break;
 		case 'w':
+			//check if space at end of placement exists
+			if(checkSpaceExists(x-s.length, y))
+			{
+				//check spaces are unoccupied
+				for(int i = 0; i < s.length; i++)
+				{
+					if(getSpaceStatus(x-i, y) != 's')
+					{
+						occupied = true;
+						System.out.println("cannot place boat here");
+						break; 
+					}
+				}
+				
+				if(!occupied)
+				{
+					//place ship
+					for(int i = 0; i < s.length; i++)
+					{
+						setSpaceStatus(x-i, y, 'b');
+					}
+				}
+				
+			}
 			break;
 			default:
 				System.out.println("Invalid ship direction");
@@ -81,9 +156,7 @@ public class Board {
 	public String convertToKey(int x, int y)
 	{
 
-		String cord = "";
-		cord += x; 
-		cord += y;
+		String cord = Integer.toString(x) + Integer.toString(y);
 		return cord; 
 	}
 	
@@ -97,5 +170,18 @@ public class Board {
 		boardState.put(convertToKey(x,y), status);
 	}
 	
+	public void printBoard(int x, int y)
+	{
+		for(int i = 0; i < x; i++)
+		{
+			for(int j = 0; j < y; j++)
+			{
+				System.out.print(boardState.get(convertToKey(i,j)));
+				System.out.print(" ");
+			}
+			System.out.println();
+		}
+		
+	}
 	
 }
