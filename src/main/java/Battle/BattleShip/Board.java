@@ -31,7 +31,7 @@ public class Board {
 		col = y;
 	}
 	
-	public void placeBoat(int x, int y, Ship s)
+	public Boolean placeBoat(int x, int y, Ship s)
 	{
 		Boolean occupied = false; 
 		
@@ -48,7 +48,7 @@ public class Board {
 					{
 						occupied = true;
 						System.out.println("cannot place boat here");
-						break; 
+						return false; 
 					}
 				}
 				
@@ -63,6 +63,7 @@ public class Board {
 				       System.out.println("added a boat");
 				       System.out.println(" ");
 				       printBoard(row, col);
+				       return true;
 				       
 				}
 				
@@ -70,7 +71,7 @@ public class Board {
 			else
 				System.out.println("cannot place boat here");
 			
-			break;
+			return false;
 		case 'e':
 			//check if space at end of placement exists
 			if(checkSpaceExists(x+s.length, y))
@@ -82,7 +83,7 @@ public class Board {
 					{
 						occupied = true;
 						System.out.println("cannot place boat here");
-						break; 
+						return false; 
 					}
 				}
 				
@@ -97,12 +98,13 @@ public class Board {
 				       System.out.println("added a boat");
 				       System.out.println(" ");
 				       printBoard(row, col);
+				       return true;
 				}
 				
 			}
 			else
 				System.out.println("cannot place boat here");
-			break;
+			return false;
 		case 's':
 			//check if space at end of placement exists
 			if(checkSpaceExists(x, y-s.length))
@@ -114,7 +116,7 @@ public class Board {
 					{
 						occupied = true;
 						System.out.println("cannot place boat here");
-						break; 
+						return false; 
 					}
 				}
 				
@@ -129,12 +131,13 @@ public class Board {
 				       System.out.println("added a boat");
 				       System.out.println(" ");
 				       printBoard(row, col);
+				       return true;
 				}
 				
 			}
 			else
 				System.out.println("cannot place boat here");
-			break;
+			return false;
 		case 'w':
 			//check if space at end of placement exists
 			if(checkSpaceExists(x-s.length, y))
@@ -146,7 +149,7 @@ public class Board {
 					{
 						occupied = true;
 						System.out.println("cannot place boat here");
-						break; 
+						return false;
 					}
 				}
 				
@@ -161,15 +164,16 @@ public class Board {
 				       System.out.println("added a boat");
 				       System.out.println(" ");
 				       printBoard(row, col);
+				       return true;
 				}
 				
 			}
 			else
 				System.out.println("cannot place boat here");
-			break;
+			return false;
 			default:
 				System.out.println("Invalid ship direction");
-				break;
+				return false;
 		}
 	}
 	
