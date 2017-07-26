@@ -16,9 +16,9 @@ public class Board {
 	
 	public Board(int x , int y)
 	{
-		for (int i = 0; i < x; i++)
+		for(int j = y; j >= 0; j--)
 		{
-			for (int j = 0; j < y; j++)
+			for(int i = 0; i <= x; i++)
 			{
 				boardState.put(convertToKey(i , j), sea);
 			}
@@ -56,7 +56,8 @@ public class Board {
 				}
 				
 			}
-			
+			else
+				System.out.println("cannot place boat here");
 			
 			break;
 		case 'e':
@@ -172,9 +173,9 @@ public class Board {
 	
 	public void printBoard(int x, int y)
 	{
-		for(int i = 0; i < x; i++)
+		for(int j = y; j >= 0; j--)
 		{
-			for(int j = 0; j < y; j++)
+			for(int i = 0; i <= x; i++)
 			{
 				System.out.print(boardState.get(convertToKey(i,j)));
 				System.out.print(" ");
@@ -183,5 +184,20 @@ public class Board {
 		}
 		
 	}
+	
+	public void printBoardCords(int x, int y)
+	{
+		for(int j = y; j >= 0; j--)
+		{
+			for(int i = 0; i <= x; i++)
+			{
+				System.out.print(Integer.toString(i)+Integer.toString(j));
+				System.out.print(" ");
+			}
+			System.out.println();
+		}
+		
+	}
+	
 	
 }
