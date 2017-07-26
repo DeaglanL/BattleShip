@@ -26,12 +26,35 @@ public class Board {
 	
 	public void placeBoat(int x, int y, Ship s)
 	{
+		Boolean occupied = false; 
+		
 		switch(s.dir)
 		{
 		case 'n':
 			//check if space at end of placement exists
-			//check spaces are unoccupied
-			//place ship
+			if(checkSpaceExists(x, y+s.length))
+			{
+				//check spaces are unoccupied
+				for(int i = 0; i < s.length; i++)
+				{
+					if(getSpaceStatus(x, y+i) != 's')
+					{
+						occupied = true;
+					}
+				}
+				
+				if(!occupied)
+				{
+					//place ship
+					for(int i = 0; i < s.length; i++)
+					{
+						setSpaceStatus(x, y+i, 'b');
+					}
+				}
+				
+			}
+			
+			
 			break;
 		case 'e':
 			break;
@@ -63,5 +86,16 @@ public class Board {
 		cord += y;
 		return cord; 
 	}
+	
+	public char getSpaceStatus(int x,int y)
+	{
+		return boardState.get(convertToKey(x,y)); 
+	}
+	
+	public void setSpaceStatus(int x,int y, char status)
+	{
+		boardState.put(convertToKey(x,y), status);
+	}
+	
 	
 }
