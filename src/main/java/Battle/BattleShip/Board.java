@@ -177,7 +177,14 @@ public class Board {
 		{
 			for(int i = 0; i <= x; i++)
 			{
-				System.out.print(boardState.get(convertToKey(i,j)));
+				if(boardState.get(convertToKey(i,j)) == 's')
+				{
+					System.out.print(Deaglan.ANSI_CYAN + "s");
+				}
+				else if(boardState.get(convertToKey(i,j)) == 'b')
+				{
+					System.out.print(Deaglan.ANSI_RED + "b");
+				}
 				System.out.print(" ");
 			}
 			System.out.println();
