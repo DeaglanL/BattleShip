@@ -7,9 +7,12 @@ public class Board {
 	/*
 	 * s = sea
 	 * b = boat
-	 * d = ded boat
+	 * h = ded boat
 	 * 
 	 */
+	
+	int row; 
+	int col;
 	Character sea = new Character('s');
 	
 	HashMap<String, Character> boardState = new HashMap<String, Character>();
@@ -23,6 +26,9 @@ public class Board {
 				boardState.put(convertToKey(i , j), sea);
 			}
 		}
+		
+		row = x; 
+		col = y;
 	}
 	
 	public void placeBoat(int x, int y, Ship s)
@@ -53,6 +59,11 @@ public class Board {
 					{
 						setSpaceStatus(x, y+i, 'b');
 					}
+					  System.out.println(" ");
+				       System.out.println("added a boat");
+				       System.out.println(" ");
+				       printBoard(row, col);
+				       
 				}
 				
 			}
@@ -82,9 +93,15 @@ public class Board {
 					{
 						setSpaceStatus(x+i, y, 'b');
 					}
+					System.out.println(" ");
+				       System.out.println("added a boat");
+				       System.out.println(" ");
+				       printBoard(row, col);
 				}
 				
 			}
+			else
+				System.out.println("cannot place boat here");
 			break;
 		case 's':
 			//check if space at end of placement exists
@@ -108,9 +125,15 @@ public class Board {
 					{
 						setSpaceStatus(x, y-i, 'b');
 					}
+					System.out.println(" ");
+				       System.out.println("added a boat");
+				       System.out.println(" ");
+				       printBoard(row, col);
 				}
 				
 			}
+			else
+				System.out.println("cannot place boat here");
 			break;
 		case 'w':
 			//check if space at end of placement exists
@@ -134,15 +157,22 @@ public class Board {
 					{
 						setSpaceStatus(x-i, y, 'b');
 					}
+					System.out.println(" ");
+				       System.out.println("added a boat");
+				       System.out.println(" ");
+				       printBoard(row, col);
 				}
 				
 			}
+			else
+				System.out.println("cannot place boat here");
 			break;
 			default:
 				System.out.println("Invalid ship direction");
 				break;
 		}
 	}
+	
 	
 	public Boolean checkSpaceExists(int x, int y)
 	{
@@ -185,11 +215,51 @@ public class Board {
 				{
 					System.out.print(Deaglan.ANSI_RED + "b");
 				}
+				else if(boardState.get(convertToKey(i,j)) == 'h')
+				{
+					System.out.print(Deaglan.ANSI_YELLOW + "h");
+				}
 				System.out.print(" ");
 			}
 			System.out.println();
+			System.out.print(Deaglan.ANSI_RESET);
 		}
 		
+	}
+	
+	public void shoot(int x, int y)
+	{
+		if(checkSpaceExists(x,y))
+		{
+			System.out.println();
+			System.out.println("Shooting " + x +","+y);
+			
+			if(boardState.get(convertToKey(x,y)) == 's')
+			{
+				System.out.println("Miss !");
+			}
+			else if(boardState.get(convertToKey(x,y)) == 'b')
+			{
+				setSpaceStatus(x,y, 'h');
+				System.out.println("");
+				System.out.println("Hit !");
+				System.out.println(" ");
+			    printBoard(row, col);
+			}
+			else if(boardState.get(convertToKey(x,y)) == 'h')
+			{
+				System.out.println("You already hit this boat");
+			}
+			else
+			{
+				System.out.println("Error");
+			}
+				
+		}
+		else
+		{
+			System.out.println("Invalid corodinate");
+		}
 	}
 	
 	public void printBoardCords(int x, int y)
