@@ -97,6 +97,7 @@ public class GameController {
 			
 			//p1 turn
 			boolean shot = false; 
+			int shotCount = 0; 
 			//p1 print board; 
 			System.out.println(Deaglan.ANSI_BLACK_BACKGROUND + Deaglan.ANSI_WHITE + "PLAYER 1");
 			System.out.println("Boards");
@@ -112,7 +113,11 @@ public class GameController {
 			{
 				if(p2Board.shoot(Integer.parseInt(cords[0]), Integer.parseInt(cords[1])))
 				{
-					shot = true; 
+					shotCount++;
+					if(shotCount == 2) 
+					{
+					  shot = true; 
+					}
 				}
 			}
 			}
@@ -137,9 +142,10 @@ public class GameController {
 			String[] cords = input.split(",");
 			if(Deaglan.intTryParse(cords[0]) && Deaglan.intTryParse(cords[1]))
 			{
-				if(p1Board.shoot(Integer.parseInt(cords[0]), Integer.parseInt(cords[1])))
+				shotCount++;
+				if(shotCount == 2) 
 				{
-					shot = true; 
+				  shot = true; 
 				}
 			}
 			}
