@@ -231,6 +231,32 @@ public class Board {
 		
 	}
 	
+	public void printHitBoard(int x, int y)
+	{
+		for(int j = y; j >= 0; j--)
+		{
+			for(int i = 0; i <= x; i++)
+			{
+				if(boardState.get(convertToKey(i,j)) == 's')
+				{
+					System.out.print(Deaglan.ANSI_CYAN + "s");
+				}
+				else if(boardState.get(convertToKey(i,j)) == 'b')
+				{
+					System.out.print(Deaglan.ANSI_CYAN + "s");
+				}
+				else if(boardState.get(convertToKey(i,j)) == 'h')
+				{
+					System.out.print(Deaglan.ANSI_YELLOW + "h");
+				}
+				System.out.print(" ");
+			}
+			System.out.println();
+			System.out.print(Deaglan.ANSI_RESET);
+		}
+		
+	}
+	
 	public void shoot(int x, int y)
 	{
 		if(checkSpaceExists(x,y))
