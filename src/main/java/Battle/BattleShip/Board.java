@@ -62,7 +62,7 @@ public class Board {
 					  System.out.println(" ");
 				       System.out.println("added a boat");
 				       System.out.println(" ");
-				       printBoard(row, col);
+				       printBoard();
 				       return true;
 				       
 				}
@@ -97,7 +97,7 @@ public class Board {
 					System.out.println(" ");
 				       System.out.println("added a boat");
 				       System.out.println(" ");
-				       printBoard(row, col);
+				       printBoard();
 				       return true;
 				}
 				
@@ -130,7 +130,7 @@ public class Board {
 					System.out.println(" ");
 				       System.out.println("added a boat");
 				       System.out.println(" ");
-				       printBoard(row, col);
+				       printBoard();
 				       return true;
 				}
 				
@@ -163,7 +163,7 @@ public class Board {
 					System.out.println(" ");
 				       System.out.println("added a boat");
 				       System.out.println(" ");
-				       printBoard(row, col);
+				       printBoard();
 				       return true;
 				}
 				
@@ -205,11 +205,12 @@ public class Board {
 		boardState.put(convertToKey(x,y), status);
 	}
 	
-	public void printBoard(int x, int y)
+	public void printBoard()
 	{
-		for(int j = y; j >= 0; j--)
+		System.out.print(Deaglan.ANSI_RESET);
+		for(int j = col; j >= 0; j--)
 		{
-			for(int i = 0; i <= x; i++)
+			for(int i = 0; i <= row; i++)
 			{
 				if(boardState.get(convertToKey(i,j)) == 's')
 				{
@@ -224,6 +225,12 @@ public class Board {
 					System.out.print(Deaglan.ANSI_YELLOW + "h");
 				}
 				System.out.print(" ");
+				try {
+					Thread.sleep(40);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 			System.out.println();
 			System.out.print(Deaglan.ANSI_RESET);
@@ -231,11 +238,12 @@ public class Board {
 		
 	}
 	
-	public void printHitBoard(int x, int y)
+	public void printHitBoard()
 	{
-		for(int j = y; j >= 0; j--)
+		System.out.print(Deaglan.ANSI_RESET);
+		for(int j = col; j >= 0; j--)
 		{
-			for(int i = 0; i <= x; i++)
+			for(int i = 0; i <= row; i++)
 			{
 				if(boardState.get(convertToKey(i,j)) == 's')
 				{
@@ -251,13 +259,19 @@ public class Board {
 				}
 				System.out.print(" ");
 			}
+			try {
+				Thread.sleep(40);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			System.out.println();
 			System.out.print(Deaglan.ANSI_RESET);
 		}
 		
 	}
 	
-	public void shoot(int x, int y)
+	public boolean shoot(int x, int y)
 	{
 		if(checkSpaceExists(x,y))
 		{
@@ -267,6 +281,7 @@ public class Board {
 			if(boardState.get(convertToKey(x,y)) == 's')
 			{
 				System.out.println("Miss !");
+				return true;
 			}
 			else if(boardState.get(convertToKey(x,y)) == 'b')
 			{
@@ -274,29 +289,33 @@ public class Board {
 				System.out.println("");
 				System.out.println("Hit !");
 				System.out.println(" ");
-			    printBoard(row, col);
+			    
+			    return true;
 			}
 			else if(boardState.get(convertToKey(x,y)) == 'h')
 			{
 				System.out.println("You already hit this boat");
+				return true;
 			}
 			else
 			{
 				System.out.println("Error");
+				return false;
 			}
 				
 		}
 		else
 		{
 			System.out.println("Invalid corodinate");
+			return false;
 		}
 	}
 	
-	public void printBoardCords(int x, int y)
+	public void printBoardCords()
 	{
-		for(int j = y; j >= 0; j--)
+		for(int j = col; j >= 0; j--)
 		{
-			for(int i = 0; i <= x; i++)
+			for(int i = 0; i <= row; i++)
 			{
 				System.out.print(Integer.toString(i)+Integer.toString(j));
 				System.out.print(" ");
