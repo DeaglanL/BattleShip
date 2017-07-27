@@ -225,12 +225,7 @@ public class Board {
 					System.out.print(Deaglan.ANSI_YELLOW + "h");
 				}
 				System.out.print(" ");
-				try {
-					Thread.sleep(40);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				Deaglan.safeSleep(40);
 			}
 			System.out.println();
 			System.out.print(Deaglan.ANSI_RESET);
@@ -259,12 +254,7 @@ public class Board {
 				}
 				System.out.print(" ");
 			}
-			try {
-				Thread.sleep(40);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			Deaglan.safeSleep(40);
 			System.out.println();
 			System.out.print(Deaglan.ANSI_RESET);
 		}
@@ -323,6 +313,21 @@ public class Board {
 			System.out.println();
 		}
 		
+	}
+	
+	public boolean lost()
+	{
+		for(int j = col; j >= 0; j--)
+		{
+			for(int i = 0; i <= row; i++)
+			{
+				if(boardState.get(convertToKey(i,j)) == 'b')
+				{
+					return false; 
+				}
+			}
+		}
+		return true;
 	}
 	
 	

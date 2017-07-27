@@ -123,6 +123,16 @@ public class GameController {
 			}
 			
 			
+			shot = false; 
+			if(p2Board.lost())
+			{
+				System.out.println(Deaglan.ANSI_BLACK_BACKGROUND + Deaglan.ANSI_WHITE + "PLAYER 1 WINS :D");
+				shot = true; 
+				gameRunning = true;
+				someonesWon = true;
+			}
+			else
+			{
 			Deaglan.safeSleep(2000);
 			Deaglan.consoleClear();
 			
@@ -134,6 +144,7 @@ public class GameController {
 			System.out.println("Boards");
 			p1Board.printHitBoard();
 			p2Board.printBoard();
+			}
 			//p2 shoot
 			while(!shot)
 			{
@@ -148,6 +159,14 @@ public class GameController {
 				  shot = true; 
 				}
 			}
+			}
+			
+			if(p1Board.lost())
+			{
+				System.out.println(Deaglan.ANSI_BLACK_BACKGROUND + Deaglan.ANSI_WHITE + "PLAYER 2 WINS :D");
+				shot = true; 
+				gameRunning = true;
+				someonesWon = true;
 			}
 		}
 		
