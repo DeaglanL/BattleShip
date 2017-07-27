@@ -44,7 +44,7 @@ public class GameController {
 		while(!p1BoatsPlaced)
 		{
 			//phase two player one ship place
-			System.out.println(Deaglan.ANSI_BLACK_BACKGROUND + Deaglan.ANSI_WHITE + "PLAYER 1");
+			System.out.println("PLAYER 1");
 			System.out.println("You have " + p1Boats + " left to place. This boat is " + (p1Boats + 1) + " long");
 			System.out.println("Please enter a the cordinate you would like to place your board at and its compass direction (E.G. 0,0,n)");
 			String input = sc.nextLine();
@@ -70,7 +70,7 @@ public class GameController {
 			//phase three player two ship place
 			Deaglan.consoleClear();
 			p2Board.printBoard();
-			System.out.println(Deaglan.ANSI_BLACK_BACKGROUND + Deaglan.ANSI_WHITE + "PLAYER 2");
+			System.out.println("PLAYER 2");
 			System.out.println("You have " + p2Boats + " left to place. This boat is " + (p2Boats + 1) + " long");
 			System.out.println("Please enter a the cordinate you would like to place your board at and its compass direction (E.G. 0,0,n)");
 			String input = sc.nextLine();
@@ -99,7 +99,7 @@ public class GameController {
 			boolean shot = false; 
 			int shotCount = 0; 
 			//p1 print board; 
-			System.out.println(Deaglan.ANSI_BLACK_BACKGROUND + Deaglan.ANSI_WHITE + "PLAYER 1");
+			System.out.println("PLAYER 1");
 			System.out.println("Boards");
 			p2Board.printHitBoard();
 			p1Board.printBoard();
@@ -126,7 +126,7 @@ public class GameController {
 			shot = false; 
 			if(p2Board.lost())
 			{
-				System.out.println(Deaglan.ANSI_BLACK_BACKGROUND + Deaglan.ANSI_WHITE + "PLAYER 1 WINS :D");
+				System.out.println("PLAYER 1 WINS :D");
 				shot = true; 
 				gameRunning = true;
 				someonesWon = true;
@@ -140,7 +140,7 @@ public class GameController {
 			shot = false; 
 			
 			//p2 print board; 
-			System.out.println(Deaglan.ANSI_BLACK_BACKGROUND + Deaglan.ANSI_WHITE + "PLAYER 2");
+			System.out.println("PLAYER 2");
 			System.out.println("Boards");
 			p1Board.printHitBoard();
 			p2Board.printBoard();
@@ -163,14 +163,14 @@ public class GameController {
 			
 			if(p1Board.lost())
 			{
-				System.out.println(Deaglan.ANSI_BLACK_BACKGROUND + Deaglan.ANSI_WHITE + "PLAYER 2 WINS :D");
+				System.out.println("PLAYER 2 WINS :D");
 				shot = true; 
 				gameRunning = true;
 				someonesWon = true;
 			}
 		}
 		
-		System.out.println(Deaglan.ANSI_WHITE_BACKGROUND + Deaglan.ANSI_PURPLE + "-----------------Game Over-------------------");
+		System.out.println("-----------------Game Over-------------------");
 		gameRunning = true; 
 		
 		

@@ -207,56 +207,52 @@ public class Board {
 	
 	public void printBoard()
 	{
-		System.out.print(Deaglan.ANSI_RESET);
 		for(int j = col; j >= 0; j--)
 		{
 			for(int i = 0; i <= row; i++)
 			{
 				if(boardState.get(convertToKey(i,j)) == 's')
 				{
-					System.out.print(Deaglan.ANSI_CYAN + "s");
+					System.out.print("s");
 				}
 				else if(boardState.get(convertToKey(i,j)) == 'b')
 				{
-					System.out.print(Deaglan.ANSI_RED + "b");
+					System.out.print("b");
 				}
 				else if(boardState.get(convertToKey(i,j)) == 'h')
 				{
-					System.out.print(Deaglan.ANSI_YELLOW + "h");
+					System.out.print("h");
 				}
 				System.out.print(" ");
 				Deaglan.safeSleep(40);
 			}
 			System.out.println();
-			System.out.print(Deaglan.ANSI_RESET);
 		}
 		
 	}
 	
 	public void printHitBoard()
 	{
-		System.out.print(Deaglan.ANSI_RESET);
 		for(int j = col; j >= 0; j--)
 		{
 			for(int i = 0; i <= row; i++)
 			{
 				if(boardState.get(convertToKey(i,j)) == 's')
 				{
-					System.out.print(Deaglan.ANSI_CYAN + "s");
+					System.out.print("s");
 				}
 				else if(boardState.get(convertToKey(i,j)) == 'b')
 				{
-					System.out.print(Deaglan.ANSI_CYAN + "s");
+					System.out.print("s");
 				}
 				else if(boardState.get(convertToKey(i,j)) == 'h')
 				{
-					System.out.print(Deaglan.ANSI_YELLOW + "h");
+					System.out.print("h");
 				}
 				System.out.print(" ");
 			}
 			Deaglan.safeSleep(40);
 			System.out.println();
-			System.out.print(Deaglan.ANSI_RESET);
 		}
 		
 	}
